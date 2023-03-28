@@ -26,6 +26,9 @@ class Doctor(models.Model):
     def __str__(self):
         return self.fname + ' ' + self.lname + '|' + self.registration_number
     
+class Adminn(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    admin_flag = models.BooleanField(default=True)
 
 
 

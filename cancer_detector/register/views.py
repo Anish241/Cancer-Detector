@@ -1,11 +1,16 @@
 from django.shortcuts import render
 from django.contrib.auth.models import User
 from django.contrib.auth import get_user_model
-from .models import Doctor
+from .models import Doctor, Adminn
 #import messages
 from django.contrib import messages
 from django.contrib.auth import authenticate
 from django.contrib.auth import login as auth_login
+from django.contrib.auth import logout as auth_logout
+from django.contrib.auth.decorators import login_required
+from django.shortcuts import redirect
+from . import email_send
+
 
 
 
@@ -78,6 +83,35 @@ def register(request):
             doctor.save()
             return render(request, 'register/confirmpage.html')
     return render(request, 'register/register.html')
-
+@login_required(login_url='/adminlogin/')
 def approve(request):
-    return render(request, 'administration/approve.html')
+    doctors = Doctor.objects.filter(verify=False)
+    if request.method == 'POST':
+        doctor_user = request.POST.get('doctor_user')
+        doctor = Doctor.objects.get(email=doctor_user)
+        user = User.objects.get(username=doctor_user)
+        name = doctor.fname + ' ' + doctor.lname
+        if 'verify' in request.POST:
+            doctor.verify = True
+            doctor.save()
+            email_send.send_approval_email(doctor_user,name)
+            return redirect('approve')
+        elif 'reject' in request.POST:
+            email_send.send_rejection_email(doctor_user,name)
+            user.delete()
+            return redirect('approve')
+    return render(request, 'administration/approve.html',{'doctors':doctors})
+
+def adminlogin(request):
+    if request.method == 'POST':
+        email = request.POST.get('email')
+        password = request.POST.get('password')
+        user = authenticate(request, username=email, password=password)
+        admin = Adminn.objects.get(user=user)
+        if user is not None and admin is not None:
+            auth_login(request, user)
+            return redirect('approve')
+        else:
+            messages.error(request, 'Invalid credentials')
+            return render(request, 'administration/adminlogin.html')
+    return render(request, 'administration/adminlogin.html')
