@@ -15,6 +15,11 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path,include
+<<<<<<< HEAD
+=======
+from django.conf import settings
+from django.conf.urls.static import static
+>>>>>>> db5877f (brain model created)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -22,3 +27,8 @@ urlpatterns = [
     path('cancerdetector/',include('core.urls')),
 
 ]
+<<<<<<< HEAD
+=======
+
+urlpatterns = urlpatterns + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+>>>>>>> db5877f (brain model created)

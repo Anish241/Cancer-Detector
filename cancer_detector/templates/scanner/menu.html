@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>MRI Scan Prediction Menu</title>
+	<link rel="stylesheet" href="{% static 'css/menu.css'%}">
+</head>
+<body>
+	<header>
+		<h1>MRI Scan Prediction</h1>
+	</header>
+	<main>
+		<section class="menu">
+			<h2>Select an Option</h2>
+			<div class="card">
+				<img src="https://www.intel.com/content/dam/develop/external/us/en/images/header-blue-lungs-777157.jpg" alt="Lung Cancer Detection">
+				<h3>Lung Cancer Detection</h3>
+				<p>Get your lung MRI scan analyzed with AI models to predict the likelihood of cancer.</p>
+				<a href="#" class="cta-btn">Analyze Your MRI Scan</a>
+			</div>
+			<div class="card">
+				<img src="https://www.cancer.gov/sites/g/files/xnrzdm211/files/styles/cgov_featured/public/cgov_image/media_image/100/200/7/files/Midline%20Glioma%20%28Article%29.jpg?h=b48714fe&itok=6rYsdcE4" alt="Brain Tumor Detection">
+				<h3>Brain Tumor Detection</h3>
+				<p>Get your brain MRI scan analyzed with AI models to detect any signs of a tumor.</p>
+				<a href="brain" class="cta-btn">Analyze Your MRI Scan</a>
+			</div>
+		</section>
+	</main>
+	<footer>
+		<p>&copy; 2023 MRI Scan Prediction.</p>
+	</footer>
+	<script src="main.js"></script>
+</body>
+</html>

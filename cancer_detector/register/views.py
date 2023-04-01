@@ -25,7 +25,11 @@ def login(request):
             doctor = Doctor.objects.get(user=user)
             if doctor.verify == True:
                 auth_login(request, user)
+<<<<<<< HEAD
                 return render(request, 'home.html')
+=======
+                return redirect('home')
+>>>>>>> db5877f (brain model created)
             else:
                 messages.error(request, 'Please wait for approval')
                 return render(request, 'register/login.html')
