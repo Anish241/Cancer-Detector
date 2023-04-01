@@ -1,8 +1,8 @@
 from django.db import models
-<<<<<<< HEAD
+
 
 # Create your models here.
-=======
+
 from datetime import datetime
 import uuid
 
@@ -16,4 +16,4 @@ class Scan(models.Model):
     Patient_Name = models.CharField(max_length=100)
     date = models.DateTimeField(default=datetime.now)
     result = models.CharField(max_length=100,blank=True)
->>>>>>> db5877f (brain model created)
+

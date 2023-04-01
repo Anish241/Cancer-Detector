@@ -1,11 +1,11 @@
 from django.shortcuts import render
-<<<<<<< HEAD
+
 
 # Create your views here.
 
 def home(request):
     return render(request, 'home.html')
-=======
+
 from django.shortcuts import redirect
 from django.contrib.auth.decorators import login_required
 from .models import *
@@ -70,4 +70,4 @@ def brain(request):
 
 
     return render(request, 'scanner/brain.html')
->>>>>>> db5877f (brain model created)
+
