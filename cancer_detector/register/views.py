@@ -26,8 +26,6 @@ def login(request):
             if doctor.verify == True:
                 auth_login(request, user)
 
-                return render(request, 'home.html')
-
                 return redirect('home')
 
             else:

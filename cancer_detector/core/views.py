@@ -24,13 +24,13 @@ import tensorflow
     
 
 # Create your views here.
-@login_required(login_url='/')
+@login_required(login_url='auth/login')
 def home(request):
     return render(request, 'home.html')
-@login_required(login_url='/')
+@login_required(login_url='auth/login')
 def menu(request):
     return render(request, 'scanner/menu.html')
-@login_required(login_url='/')
+@login_required(login_url='auth/login')
 def brain(request):
     if request.method == 'POST':
         user = request.user
@@ -71,7 +71,7 @@ def brain(request):
 
     return render(request, 'scanner/brain.html')
 
-@login_required(login_url='/')
+@login_required(login_url='auth/login')
 def lung(request):
     if request.method == 'POST':
         user = request.user
