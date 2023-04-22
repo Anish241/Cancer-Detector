@@ -1,35 +1,72 @@
 <!DOCTYPE html>
 {% load static %}
-<html>
+<html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>MRI Scan Prediction Menu</title>
-	<link rel="stylesheet" href="{% static 'css/menu.css'%}">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=
+	, initial-scale=1.0">
+	<link rel="stylesheet" href="{% static 'css/home.css' %}">
+	<link rel="stylesheet" href="{% static 'css/menu.css' %}">
+	<title>Home</title>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.2/css/bootstrap.min.css">
+
 </head>
 <body>
-	<header>
-		<h1>MRI Scan Prediction</h1>
-	</header>
-	<main>
-		<section class="menu">
-			<h2>Select an Option</h2>
-			<div class="card">
-				<img src="https://www.intel.com/content/dam/develop/external/us/en/images/header-blue-lungs-777157.jpg" alt="Lung Cancer Detection">
-				<h3>Lung Cancer Detection</h3>
-				<p>Get your lung MRI scan analyzed with AI models to predict the likelihood of cancer.</p>
-				<a href="lung" class="cta-btn">Analyze Your MRI Scan</a>
+	<div class="landing-page">
+		<div class="container">
+		  <div class="header-area">
+			<div class="logo">Onco<b>Detect</b></div>
+			<ul class="links">
+			  <li><a href="/" class="oth">Home</a></li>
+			  <li>About Us</li>
+			  <li>Your Profile</li>
+			  <a class="lgt" href="auth/logout"><li>logout</li></a>
+			</ul>
+		  </div>
+	<div class="c-wrapper">
+		<div class="row row-cols-1 row-cols-md-3 g-4">
+			<div class="col">
+			  <div class="card h-100">
+				<img src="{% static 'assets/images/lung.jpg' %}" class="card-img-top" alt="...">
+				<div class="card-body">
+				  <h5 class="card-title">Lung Cancer</h5>
+				  <p class="card-text">Upload the MRI scans and get result for benign and malignant lung canncer.</p>
+				</div>
+				<button type="button" class="btn-sm myclass" onclick="window.location.href='lung'">Check</button>
+				<!-- <div class="card-footer">
+				  <small class="text-muted">Last updated 3 mins ago</small>
+				</div> -->
+			  </div>
 			</div>
-			<div class="card">
-				<img src="https://www.cancer.gov/sites/g/files/xnrzdm211/files/styles/cgov_featured/public/cgov_image/media_image/100/200/7/files/Midline%20Glioma%20%28Article%29.jpg?h=b48714fe&itok=6rYsdcE4" alt="Brain Tumor Detection">
-				<h3>Brain Tumor Detection</h3>
-				<p>Get your brain MRI scan analyzed with AI models to detect any signs of a tumor.</p>
-				<a href="brain" class="cta-btn">Analyze Your MRI Scan</a>
+			<div class="col">
+			  <div class="card h-100">
+				<img src="{% static 'assets/images/brain.jpg' %}" class="card-img-top" alt="...">
+				<div class="card-body">
+				  <h5 class="card-title">Brain Cancer</h5>
+				  <p class="card-text">Upload the MRI scans and get results for pitutary tumor</p>
+				</div>
+				<button type="button" class="btn-sm myclass" onclick="window.location.href='brain'" >Check</button>
+				<!-- <div class="card-footer">
+				  <small class="text-muted">Last updated 3 mins ago</small>
+				</div> -->
+			  </div>
 			</div>
-		</section>
-	</main>
-	<footer>
-		<p>&copy; 2023 MRI Scan Prediction.</p>
-	</footer>
-	<script src="main.js"></script>
+			<div class="col">
+			  <div class="card h-100">
+				<img src="{% static 'assets/images/kidney.png' %}" class="card-img-top" alt="...">
+				<div class="card-body">
+				  <h5 class="card-title">Kidney Cancer</h5>
+				  <p class="card-text">Upload the MRI scans get the results for Kidney cancer</p>
+				</div>
+				<button type="button" class="btn-sm myclass">Check</button>
+				<!-- <div class="card-footer">
+				  <small class="text-muted">Last updated 3 mins ago</small>
+				</div> -->
+			  </div>
+			</div>
+		  </div>
+	</div>
+
 </body>
 </html>

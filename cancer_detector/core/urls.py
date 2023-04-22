@@ -7,6 +7,7 @@ urlpatterns = [
     path('menu/', views.menu, name='menu'),
     path('menu/brain/', views.brain, name='brain'),
     path('menu/lung/', views.lung, name='lung'),
+    
 
 ]
 

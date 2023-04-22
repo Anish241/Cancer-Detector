@@ -1,46 +1,37 @@
-{% extends 'base.html' %}
+<!DOCTYPE html>
 {% load static %}
-
-{%block title%}Home{% endblock %}
-
-{%block style%}
-    <link rel="stylesheet" href="{% static 'css/home.css' %}">
-{% endblock %}
-
-{% block content %}
-
-
-<header>
-		<h1>MRI Scan Prediction</h1>
-	</header>
-	<main>
-		<section class="intro">
-			<h2>Get your MRI scan analyzed with AI models to predict cancer</h2>
-			<p>Our website uses state-of-the-art AI models to analyze MRI scans and predict the likelihood of cancer. With our technology, we can detect cancer at an early stage and help you receive timely medical care.</p>
-			<button class="cta-btn" type="button" onclick="location.href='/cancerdetector/menu'" >Analyze Your MRI Scan</button>
-		</section>
-		<section class="features">
-			<h2>Features</h2>
-			<ul>
-				<li>Fast and accurate analysis of MRI scans</li>
-				<li>Early detection of cancer</li>
-				<li>Secure and private</li>
-				<li>Easy to use</li>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=
+	, initial-scale=1.0">
+	<link rel="stylesheet" href="{% static 'css/home.css' %}">
+	<title>Home</title>
+</head>
+<body>
+	<div class="landing-page">
+		<div class="container">
+		  <div class="header-area">
+			<div class="logo">Onco<b>Detect</b></div>
+			<ul class="links">
+			  <li><a href="/" class="oth">Home</a></li>
+			  <li>About Us</li>
+			  <li>Your Profile</li>
+			  <a href="auth/logout"><li>logout</li></a>
 			</ul>
-		</section>
-		<section class="how-it-works">
-			<h2>How it Works</h2>
-			<p>Simply upload your MRI scan and our AI models will analyze it to detect any signs of cancer. The results will be displayed on your dashboard, which you can access through your account.</p>
-		</section>
-		
-	</main>
-	<footer>
-		<p>Copyright © 2023 MRI Scan Prediction.
-	</footer>
-
-
-{% endblock %}
-
-{% block script %}
-    <script src="{% static 'js/home.js' %}"></script>
-{% endblock %}
+		  </div>
+		  <div class="info">
+			<h1>Cancer Detection using ML models</h1>
+			<p>Our Website provides a platform to detect cancer using ML models. We have models for Lung Cancer, Brain Tumor and Kidney Cancer tranied on an extensive dataset.
+			</p>
+			<button onclick="window.location.href='/menu'" >Get Started</button>
+		  </div>
+		  <div class="image">
+			<img src="{% static 'assets/images/landing.png' %}">
+		  </div>
+		  <div class="clearfix"></div>
+		</div>
+	  </div>
+</body>
+</html>

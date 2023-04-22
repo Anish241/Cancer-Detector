@@ -117,3 +117,7 @@ def adminlogin(request):
             messages.error(request, 'Invalid credentials')
             return render(request, 'administration/adminlogin.html')
     return render(request, 'administration/adminlogin.html')
+
+def logout(request):
+    auth_logout(request)
+    return redirect('login')

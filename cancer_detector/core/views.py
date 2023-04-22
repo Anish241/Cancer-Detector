@@ -1,11 +1,4 @@
 from django.shortcuts import render
-
-
-# Create your views here.
-
-def home(request):
-    return render(request, 'home.html')
-
 from django.shortcuts import redirect
 from django.contrib.auth.decorators import login_required
 from .models import *
@@ -17,8 +10,14 @@ from django.conf import settings
 from PIL import Image
 import os
 import uuid
-
+from register.models import Doctor
 import tensorflow
+
+
+# Create your views here.
+
+
+
 
 
     
@@ -26,7 +25,8 @@ import tensorflow
 # Create your views here.
 @login_required(login_url='auth/login')
 def home(request):
-    return render(request, 'home.html')
+    doctor = Doctor.objects.get(user=request.user)
+    return render(request, 'home.html', {'doctor':doctor})
 @login_required(login_url='auth/login')
 def menu(request):
     return render(request, 'scanner/menu.html')
@@ -110,4 +110,7 @@ def lung(request):
         return render(request, 'scanner/brain_result.html', {'scan':scan, 'img_url':img_url})
 
     return render(request, 'scanner/lung.html')
+
+
+    
 
