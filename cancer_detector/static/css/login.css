@@ -4,12 +4,12 @@ html {
   
   body {
     display: flex;
-    flex-direction: column;
-    justify-content: center;
+    flex-direction: row;
+    justify-content: flex-end;
     align-items: center;
     position: relative;
     min-height: 100%;
-    background: #F1F1F1;
+    background: url('https://static.vecteezy.com/system/resources/previews/001/775/499/original/health-care-icon-pattern-medical-innovation-concept-background-design-vector.jpg');
   }
   
   /* Animation Keyframes */
@@ -38,23 +38,23 @@ html {
   /* Login Form */
   .login-container {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
     position: relative;
-    width: 340px;
+    width: 430px;
     height: auto;
-    padding: 5px;
+    padding: 20px;
     box-sizing: border-box;
   }
   
   .login-container img {
-    width: 200px;
+    width: 400px;
     margin: 0 0 20px 0;
   }
   
   .login-container p {
     align-self: flex-start;
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Georgia', serif;
     font-size: 0.8rem;
     color: rgba(0, 0, 0, 0.5);
   }
@@ -73,10 +73,10 @@ html {
     background: #FAFAFA;
     overflow: hidden;
     animation: input_opacity 0.2s cubic-bezier(.55, 0, .1, 1);
-    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14),
+    /*box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14),
                 0 1px 5px 0 rgba(0, 0, 0, 0.12),
                 0 3px 1px -2px rgba(0, 0, 0, 0.2);
-  }
+  */}
   
   .login > header {
     position: relative;
@@ -84,10 +84,10 @@ html {
     padding: 10px;
     margin: -10px -10px 25px -10px;
     border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-    background: #6c63ff;
-    font-family: 'Roboto', sans-serif;
-    font-size: 1.3rem;
-    color: #FAFAFA;
+    background: #ffffff;
+    font-family: 'Georgia', serif;
+    font-size: 1.5rem;
+    color: #231e8a;
     animation: scale_header 0.6s cubic-bezier(.55, 0, .1, 1), text_opacity 1s cubic-bezier(.55, 0, .1, 1);
     box-shadow: 0px 2px 2px 0px rgba(0, 0, 0, 0.14),
                 0px 1px 5px 0px rgba(0, 0, 0, 0.12),
@@ -105,7 +105,7 @@ html {
     padding: 10px;
     margin: -10px 0 0 -10px;
     box-sizing: border-box;
-    background: rgba(0, 0, 0, 0.156);
+    background: rgba(188, 117, 235, 0.397);
     font-family: 'Roboto', sans-serif;
     font-size: 0.9rem;
     color: transparent;
@@ -132,12 +132,13 @@ html {
   .login > header h4 {
     font-size: 0.7em;
     animation: text_opacity 1.5s cubic-bezier(.55, 0, .1, 1);
-    color: rgba(255, 255, 255, 0.4);
+    color: #231e8a;
+    opacity: 0.5;
   }
   
   /* Form */
   .login-form {
-    padding: 15px;
+    padding: 50px;
     box-sizing: border-box;
   }
   
@@ -153,7 +154,7 @@ html {
     box-sizing: border-box;
     background: transparent;
     font-size: 1rem;
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Georgia', serif;
     font-weight: 500;
     opacity: 1;
     animation: input_opacity 0.8s cubic-bezier(.55, 0, .1, 1);
@@ -162,7 +163,7 @@ html {
   
   .login-input:focus {
     outline: none;
-    border-bottom: 2px solid #6c63ff;
+    border-bottom: 2px solid #231e8a;
   }
   
   
@@ -172,7 +173,7 @@ html {
     flex-direction: row;
     justify-content: flex-end;
     position: relative;
-    padding: 10px;
+    padding: 20px;
     margin: 35px -25px -25px -25px;
     border-top: 1px solid rgba(0, 0, 0, 0.1);
   }
@@ -182,10 +183,10 @@ html {
     border: none;
     border-radius: 3px;
     background: transparent;
-    font-family: 'Roboto', sans-serif;
-    font-size: 0.9rem;
+    font-family: 'Georgia', serif;
+    font-size: 1.0rem;
     font-weight: 500;
-    color: #6c63ff;
+    color: #231e8a;
     cursor: pointer;
     opacity: 1;
     animation: input_opacity 0.8s cubic-bezier(.55, 0, .1, 1);
@@ -195,7 +196,7 @@ html {
   .login-button.raised {
     padding: 5px 10px;
     color: #FAFAFA;
-    background: #6c63ff;
+    background: #231e8a;
     box-shadow: 0px 2px 2px 0px rgba(0, 0, 0, 0.137255),
                 0px 1px 5px 0px rgba(0, 0, 0, 0.117647),
                 0px 3px 1px -2px rgba(0, 0, 0, 0.2);
@@ -206,6 +207,6 @@ html {
   }
   
   .login-button.raised:hover {
-    background: #6c63ff;
+    background: #231e8a;
   }
   
