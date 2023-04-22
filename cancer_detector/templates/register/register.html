@@ -7,12 +7,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{% static 'css/register.css' %}">
     <title>Register</title>
+    <style>
+    body {
+        background-image: url('https://static.vecteezy.com/system/resources/previews/001/775/499/original/health-care-icon-pattern-medical-innovation-concept-background-design-vector.jpg');
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-size: cover;
+      }
+    </style>
 </head>
 <body>
     <div class="container">
     <form class="form" method="POST" action="" enctype="multipart/form-data">
         {% csrf_token %}
-        <p class="title">Register </p>
+        <p class="title">REGISTER</p>
         {% if messages %}
             {% for message in messages %}
                 <p class="message" style="color: red;">{{message}}</p>
@@ -21,12 +29,12 @@
             <div class="flex">
             <label>
                 <input required="" name="fname" placeholder="" type="text" class="input">
-                <span>Firstname</span>
+                <span>First name</span>
             </label>
     
             <label>
                 <input required="" name="lname" placeholder="" type="text" class="input">
-                <span>Lastname</span>
+                <span>Last name</span>
             </label>
         </div>  
                 
@@ -48,7 +56,7 @@
             <span>Confirm password</span>
         </label>
         <button class="submit" name="s1" type="submit">Proceed</button>
-        <p class="signin">Already have an account ? <a href="/">Signin</a> </p>
+        <p class="signin">Already have an account ? <a href="/">Sign In</a> </p>
     </form>
 </div>
 </body>

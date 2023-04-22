@@ -1,19 +1,19 @@
 
-
 .form {
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 15px;
     /* max-width: 350px; */
     background-color: #fff;
-    padding: 20px;
+    padding: 30px;
     border-radius: 20px;
     position: relative;
   }
   
   .title {
-    font-size: 28px;
-    color: royalblue;
+    font-family: 'Georgia', serif;
+    font-size: 30px;
+    color: #231e8a;
     font-weight: 600;
     letter-spacing: -1px;
     position: relative;
@@ -29,13 +29,13 @@
     width: 16px;
     border-radius: 50%;
     left: 0px;
-    background-color: royalblue;
+    background-color: #231e8a;
   }
   
   .title::before {
     width: 18px;
     height: 18px;
-    background-color: royalblue;
+    background-color: #231e8a;
   }
   
   .title::after {
@@ -45,8 +45,9 @@
   }
   
   .message, .signin {
+    font-family: 'Georgia', serif;
     color: rgba(88, 87, 87, 0.822);
-    font-size: 14px;
+    font-size: 17px;
   }
   
   .signin {
@@ -54,17 +55,17 @@
   }
   
   .signin a {
-    color: royalblue;
+    color: #231e8a;
   }
   
   .signin a:hover {
-    text-decoration: underline royalblue;
+    text-decoration: underline #231e8a;
   }
   
   .flex {
     display: flex;
-    width: 100%;
-    gap: 6px;
+    width: 95%;
+    gap: 10px;
   }
   
   .form label {
@@ -83,41 +84,45 @@
     position: absolute;
     left: 10px;
     top: 15px;
+    font-family: 'Georgia', serif;
     color: grey;
-    font-size: 0.9em;
+    font-size: 1.2em;
     cursor: text;
     transition: 0.3s ease;
   }
   
   .form label .input:placeholder-shown + span {
     top: 15px;
+    font-family: 'Georgia', serif;
     font-size: 0.9em;
   }
   
   .form label .input:focus + span,.form label .input:valid + span {
     top: 30px;
+    font-family: 'Georgia', serif;
     font-size: 0.7em;
     font-weight: 600;
   }
   
   .form label .input:valid + span {
-    color: green;
+    color: rgb(123, 238, 123);
   }
   
   .submit {
     border: none;
     outline: none;
-    background-color: royalblue;
+    background-color: #231e8a;
     padding: 10px;
     border-radius: 10px;
     color: #fff;
-    font-size: 16px;
+    font-family: 'Georgia', serif;
+    font-size: 20px;
     transform: .3s ease;
     width: 100%;
   }
   
   .submit:hover {
-    background-color: rgb(56, 90, 194);
+    background-color: #231e8a;
   }
   
   @keyframes pulse {
@@ -133,11 +138,9 @@
   }
 /*center the div*/
 .container{
-
     display: flex;
-    justify-content: center;
+    justify-content: flex-end;
     align-items: center;
     height: 100vh;
     width: 100vw;
-    background-color: #f1f1f1;
 }
