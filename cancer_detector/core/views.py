@@ -12,6 +12,7 @@ import os
 import uuid
 from register.models import Doctor
 import tensorflow
+import cv2
 
 
 # Create your views here.
@@ -110,6 +111,52 @@ def lung(request):
         return render(request, 'scanner/brain_result.html', {'scan':scan, 'img_url':img_url})
 
     return render(request, 'scanner/lung.html')
+
+@login_required(login_url='auth/login')
+def kidney(request):
+     if request.method == 'POST':
+        user = request.user
+        Patient_Name = request.POST.get('patient-name')
+        file = request.FILES['mri-scan']
+        scan = Scan(user=user, Patient_Name=Patient_Name)
+        scan.save()
+        id = scan.id
+        #save the image in the media folder with the id as the name and the extension
+        unique_filename = str(uuid.uuid4())
+        extension = file.name.split('.')[1]
+        str_file = unique_filename + '.' + extension
+        #save the image in the media folder with the id as the name and the extension
+        file = ContentFile(file.read())
+        default_storage.save('images/'+str(str_file), file)
+        scan.image = 'images/'+str(str_file)
+        scan.save()
+        model = tensorflow.keras.models.load_model('kidney_model')
+        img = cv2.imread('media/images/'+str(str_file), cv2.IMREAD_GRAYSCALE)
+        img = cv2.resize(img, (512, 512))
+        img = np.reshape(img, (1, 512, 512, 1))
+        img = img.astype('float32') / 255
+        predictions = model.predict(img)
+        predicted_class = np.argmax(predictions)
+        if predicted_class == 0:
+             scan.result = 'Cyst Detected'
+             scan.save()
+        elif predicted_class == 1:
+                scan.result = 'Normal'
+                scan.save()
+        elif predicted_class == 2:
+                scan.result = 'Stone Detected'
+                scan.save()
+        else:
+            scan.result = 'Tumor Detected'
+            scan.save()
+        img_url = 'media/images/'+str(str_file)
+        
+        return render(request, 'scanner/brain_result.html', {'scan':scan, 'img_url':img_url})
+
+
+
+
+     return render(request, 'scanner/kidney.html')
 
 
     
