@@ -1,36 +1,33 @@
 <!DOCTYPE html>
 {% load static %}
-<html>
+<html lang="en">
 <head>
-	<meta charset="UTF-8">
-	<title>Upload MRI Scan Image</title>
-	<link rel="stylesheet" href="{% static 'css/form.css' %}">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OncoDetect</title>
+    <link rel="stylesheet" href="{% static 'css/kidney.css' %}">
+    <link href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined" rel="stylesheet">
 </head>
 <body>
-	<header>
-		<h1>MRI Scan Prediction</h1>
-	</header>
-	<main>
-		<section class="upload-form">
-			<h2>Upload MRI Scan Image</h2>
-			<form action="" method="POST" enctype="multipart/form-data">
-                {% csrf_token %}
-				<div class="form-group">
-					<label for="mri-scan">Select MRI Scan Image:</label>
-					<input type="file" id="mri-scan" name="mri-scan" accept=".jpg,.jpeg,.png,.gif" required>
-				</div>
-				<div class="form-group">
-					<label for="patient-name">Patient Name:</label>
-					<input type="text" id="patient-name" name="patient-name" required>
-				</div>
-				
-				<button type="submit" class="cta-btn">Analyze MRI Scan</button>
-			</form>
-		</section>
-	</main>
-	<footer>
-		<p>&copy; 2023 MRI Scan Prediction.</p>
-	</footer>
-	
+    <form class="form-container" enctype='multipart/form-data' action="" method="POST">
+        {% csrf_token %}
+        <div class="upload-files-container">
+            <div class="drag-file-area">
+                <span class="material-icons-outlined upload-icon"> file_upload </span>
+                <h3 class="dynamic-message"> Drag & drop MRI scan here</h3>
+                <label class="label"> or <span class="browse-files"> <input type="file" name="mri-scan" class="default-file-input"/> <span class="browse-files-text">Browse File</span> <span>from device</span> </span> </label>
+            </div>
+            <span class="cannot-upload-message"> <span class="material-icons-outlined">Error</span> Please select a file first <span class="material-icons-outlined cancel-alert-button">ancel</span> </span>
+            <div class="file-block">
+                <div class="file-info"> <span class="material-icons-outlined file-icon">Description</span> <span class="file-name"> </span> | <span class="file-size">  </span> </div>
+                <span class="material-icons remove-file-icon">Delete</span>
+                <div class="progress-bar"> </div>
+            </div>
+            <input type="text" name="patient-name" class="pname" placeholder="Patient Name" id="" required>
+            <button type="submit" class="upload-button"> Upload </button>
+        </div>
+    </form> 
 </body>
+<script src="{% static 'js/kidney.js' %}"></script>
 </html>
