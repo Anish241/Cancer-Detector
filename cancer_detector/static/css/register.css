@@ -2,12 +2,13 @@
 .form {
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
     gap: 15px;
-    /* max-width: 350px; */
     background-color: #fff;
     padding: 30px;
     border-radius: 20px;
-    position: relative;
   }
   
   .title {
@@ -64,7 +65,7 @@
   
   .flex {
     display: flex;
-    width: 95%;
+    width: 100%;
     gap: 10px;
   }
   
@@ -139,8 +140,10 @@
 /*center the div*/
 .container{
     display: flex;
-    justify-content: flex-end;
+    flex-direction: column;
+    justify-content: center;
     align-items: center;
+    position: relative;
     height: 100vh;
     width: 100vw;
 }
