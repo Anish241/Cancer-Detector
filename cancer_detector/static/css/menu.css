@@ -2,6 +2,7 @@
 .c-wrapper{
     display: flex;
     justify-content: center;
+    align-items: center;
     margin-top: 2rem;
     font-family: 'Georgia', serif;
     text-align: center;
