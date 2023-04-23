@@ -53,6 +53,7 @@ def brain(request):
     
         scan.save()
         model = tensorflow.keras.models.load_model('brain_model.h5')
+        
     
         #remove spaces and replace ( with _ and delete )
         img = tensorflow.keras.preprocessing.image.load_img('media/images/'+str(str_file), target_size=(256, 256))
