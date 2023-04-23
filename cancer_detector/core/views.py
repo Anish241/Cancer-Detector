@@ -11,7 +11,7 @@ from PIL import Image
 import os
 import uuid
 from register.models import Doctor
-import tensorflow
+import tensorflow 
 import cv2
 
 
@@ -130,26 +130,27 @@ def kidney(request):
         default_storage.save('images/'+str(str_file), file)
         scan.image = 'images/'+str(str_file)
         scan.save()
-        model = tensorflow.keras.models.load_model('kidney_model')
-        img = cv2.imread('media/images/'+str(str_file), cv2.IMREAD_GRAYSCALE)
-        img = cv2.resize(img, (512, 512))
-        img = np.reshape(img, (1, 512, 512, 1))
-        img = img.astype('float32') / 255
-        predictions = model.predict(img)
-        predicted_class = np.argmax(predictions)
-        if predicted_class == 0:
-             scan.result = 'Cyst Detected'
-             scan.save()
-        elif predicted_class == 1:
-                scan.result = 'Normal'
+        with tensorflow.device('/GPU:0'):
+            model = tensorflow.keras.models.load_model('kidney_model')
+            img = cv2.imread('media/images/'+str(str_file), cv2.IMREAD_GRAYSCALE)
+            img = cv2.resize(img, (512, 512))
+            img = np.reshape(img, (1, 512, 512, 1))
+            img = img.astype('float32') / 255
+            predictions = model.predict(img)
+            predicted_class = np.argmax(predictions)
+            if predicted_class == 0:
+                scan.result = 'Cyst Detected'
                 scan.save()
-        elif predicted_class == 2:
-                scan.result = 'Stone Detected'
+            elif predicted_class == 1:
+                    scan.result = 'Normal'
+                    scan.save()
+            elif predicted_class == 2:
+                    scan.result = 'Stone Detected'
+                    scan.save()
+            else:
+                scan.result = 'Tumor Detected'
                 scan.save()
-        else:
-            scan.result = 'Tumor Detected'
-            scan.save()
-        img_url = 'media/images/'+str(str_file)
+            img_url = 'media/images/'+str(str_file)
         
         return render(request, 'scanner/brain_result.html', {'scan':scan, 'img_url':img_url})
 
