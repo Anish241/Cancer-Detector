@@ -13,6 +13,7 @@ import uuid
 from register.models import Doctor
 import tensorflow 
 import cv2
+from tensorflow.keras.preprocessing import image
 
 
 # Create your views here.
@@ -52,21 +53,23 @@ def brain(request):
         print(str_file)
     
         scan.save()
-        model = tensorflow.keras.models.load_model('brain_model.h5')
-        
-    
-        #remove spaces and replace ( with _ and delete )
-        img = tensorflow.keras.preprocessing.image.load_img('media/images/'+str(str_file), target_size=(256, 256))
-        img_array = tensorflow.keras.preprocessing.image.img_to_array(img)
-        img_array = np.expand_dims(img_array, 0) 
-        predictions = model.predict(img_array)
-        if predictions[0][0] > 0.5:
-            scan.result = 'Tumor Detected'
-            scan.save()
-        else:
-            scan.result = 'No Tumor Detected'
-            scan.save()
         img_url = 'media/images/'+str(str_file)
+        model = tensorflow.keras.models.load_model('brain_tumor')
+        img = image.load_img(img_url, target_size=(512, 512), color_mode='grayscale')
+        x = image.img_to_array(img)
+        x = np.expand_dims(x, axis=0)
+        x = x / 255.0
+
+        # Predict the class of the input image
+        preds = model.predict(x)
+        class_idx = np.argmax(preds)
+        class_labels = ['glioma', 'meningiome', 'no tumor', 'pitutary']
+        class_name = class_labels[class_idx]
+        scan.result = class_name
+        scan.save()
+
+        print('Predicted class: ', class_name)
+        
         
         return render(request, 'scanner/brain_result.html', {'scan':scan, 'img_url':img_url})
 
@@ -94,22 +97,25 @@ def lung(request):
         print(str_file)
     
         scan.save()
-        model = tensorflow.keras.models.load_model('lung_model.h5')
-    
-        #remove spaces and replace ( with _ and delete )
-        img = tensorflow.keras.preprocessing.image.load_img('media/images/'+str(str_file), target_size=(256, 256))
-        img_array = tensorflow.keras.preprocessing.image.img_to_array(img)
-        img_array = np.expand_dims(img_array, 0) 
-        predictions = model.predict(img_array)
-        if predictions[0][0] > 0.5:
-            scan.result = 'Cancer Detected'
-            scan.save()
-        else:
-            scan.result = 'No Cancer Detected'
-            scan.save()
         img_url = 'media/images/'+str(str_file)
+        model = tensorflow.keras.models.load_model('lung_model')
+        img = image.load_img(img_url, target_size=(512, 512), color_mode='grayscale')
+        x = image.img_to_array(img)
+        x = np.expand_dims(x, axis=0)
+        x = x / 255.0
+        preds = model.predict(x)
+        class_idx = np.argmax(preds)
+        class_labels = ['benign', 'malignant', 'no cancer']
+        class_name = class_labels[class_idx]
+        scan.result = class_name
+        scan.save()
+
+        print('Predicted class: ', class_name)
+        
         
         return render(request, 'scanner/brain_result.html', {'scan':scan, 'img_url':img_url})
+
+
 
     return render(request, 'scanner/lung.html')
 
