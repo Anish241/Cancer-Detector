@@ -85,7 +85,7 @@ def register(request):
             doctor.save()
             return render(request, 'register/confirmpage.html')
     return render(request, 'register/register.html')
-@login_required(login_url='/adminlogin/')
+@login_required(login_url='/auth/adminlogin')
 def approve(request):
     doctors = Doctor.objects.filter(verify=False)
     if request.method == 'POST':

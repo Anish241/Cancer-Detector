@@ -63,7 +63,7 @@ def brain(request):
         # Predict the class of the input image
         preds = model.predict(x)
         class_idx = np.argmax(preds)
-        class_labels = ['glioma', 'meningiome', 'no tumor', 'pitutary']
+        class_labels = ['Glioma Tumor Detected', 'Meningiome Tumor Detected', 'No tumor Detected', 'Pitutary Tumor Detected']
         class_name = class_labels[class_idx]
         scan.result = class_name
         scan.save()
@@ -71,7 +71,7 @@ def brain(request):
         print('Predicted class: ', class_name)
         
         
-        return render(request, 'scanner/brain_result.html', {'scan':scan, 'img_url':img_url})
+        return render(request, 'scanner/result.html', {'scan':scan, 'img_url':img_url})
 
 
     return render(request, 'scanner/brain.html')
@@ -105,7 +105,7 @@ def lung(request):
         x = x / 255.0
         preds = model.predict(x)
         class_idx = np.argmax(preds)
-        class_labels = ['benign', 'malignant', 'no cancer']
+        class_labels = ['Benign Cancer Detected', 'Malignant Cancer Detected', 'No Cancer Detected']
         class_name = class_labels[class_idx]
         scan.result = class_name
         scan.save()
@@ -113,7 +113,7 @@ def lung(request):
         print('Predicted class: ', class_name)
         
         
-        return render(request, 'scanner/brain_result.html', {'scan':scan, 'img_url':img_url})
+        return render(request, 'scanner/result.html', {'scan':scan, 'img_url':img_url})
 
 
 
@@ -137,30 +137,31 @@ def kidney(request):
         default_storage.save('images/'+str(str_file), file)
         scan.image = 'images/'+str(str_file)
         scan.save()
-        with tensorflow.device('/GPU:0'):
-            model = tensorflow.keras.models.load_model('kidney_model')
-            img = cv2.imread('media/images/'+str(str_file), cv2.IMREAD_GRAYSCALE)
-            img = cv2.resize(img, (512, 512))
-            img = np.reshape(img, (1, 512, 512, 1))
-            img = img.astype('float32') / 255
-            predictions = model.predict(img)
-            predicted_class = np.argmax(predictions)
-            if predicted_class == 0:
+        
+        model = tensorflow.keras.models.load_model('kidney_model')
+        img = cv2.imread('media/images/'+str(str_file), cv2.IMREAD_GRAYSCALE)
+        img = cv2.resize(img, (512, 512))
+        img = np.reshape(img, (1, 512, 512, 1))
+        img = img.astype('float32') / 255
+        predictions = model.predict(img)
+        predicted_class = np.argmax(predictions)
+        c=0
+        if predicted_class == 0:
                 scan.result = 'Cyst Detected'
                 scan.save()
-            elif predicted_class == 1:
-                    scan.result = 'Normal'
+        elif predicted_class == 1:
+                    scan.result = 'No Cancer Detected'
                     scan.save()
-            elif predicted_class == 2:
+                    c=1
+        elif predicted_class == 2:
                     scan.result = 'Stone Detected'
                     scan.save()
-            else:
+        else:
                 scan.result = 'Tumor Detected'
                 scan.save()
-            img_url = 'media/images/'+str(str_file)
+        img_url = 'media/images/'+str(str_file)
         
-        return render(request, 'scanner/brain_result.html', {'scan':scan, 'img_url':img_url})
-
+        return render(request, 'scanner/result.html', {'scan':scan, 'img_url':img_url, 'c':c})
 
 
 
